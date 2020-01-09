@@ -95,3 +95,14 @@ pub fn pprint(ans: f64) {
         _ => unreachable!("N-nani?!"),
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn format_fraction() {
+        let evaled = radix_fmt(41.90 + 91.90 + 209.0 + 249.0, 10).unwrap();
+        assert_eq!("591.80", evaled);
+    }
+}
