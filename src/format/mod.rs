@@ -8,6 +8,7 @@ pub fn autobalance_parens(input: &str) -> Result<String, CalcError> {
     let mut balanced = String::from(input);
     let mut left_parens = 0;
     let mut right_parens = 0;
+    
     for letter in input.chars() {
         if letter == '(' {
             left_parens += 1;
@@ -93,5 +94,16 @@ pub fn pprint(ans: f64) {
         1 => println!("{:>10}", thousand_sep(ans_vector[0])),
         2 => println!("{:>10}.{}", thousand_sep(ans_vector[0]), ans_vector[1]),
         _ => unreachable!("N-nani?!"),
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn format_fraction() {
+        let evaled = radix_fmt(41.90 + 91.90 + 209.0 + 249.0, 10).unwrap();
+        assert_eq!("591.80", evaled);
     }
 }
